@@ -25,7 +25,10 @@ namespace EmployeeManagementAutomation.Base
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
+            if (driver != null)
+            {
+                driver.Dispose();
+            }
         }
     }
 }

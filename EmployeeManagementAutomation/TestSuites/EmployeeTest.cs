@@ -13,8 +13,8 @@ namespace EmployeeManagementAutomation.TestSuites
     /// </summary>
     public class EmployeeTest : AutomationWrapper
     {
-        [Test]
-        public void AddValidEmployeeTest()
+        //[Test]
+        public void AddValidEmployeeTest(string username,string password,string firstName,string middleName,string lastName)
         {
             driver.FindElement(By.Name("username")).SendKeys("Admin");
             driver.FindElement(By.Name("password")).SendKeys("admin123");

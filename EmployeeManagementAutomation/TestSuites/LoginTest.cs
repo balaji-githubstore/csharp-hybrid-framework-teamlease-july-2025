@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementAutomation.Base;
+using EmployeeManagementAutomation.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -22,15 +23,20 @@ namespace EmployeeManagementAutomation.TestSuites
             Assert.That(actualValue, Is.EqualTo("Time at Work"));
         }
 
-        [Test]
-        public void InvalidLoginTest()
+      
+
+
+        //[TestCase("saul", "saul123", "Invalid credential")]
+        //[TestCase("kim", "kim123", "Invalid credential")]
+        [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.InvalidLoginTestData))]
+        public void InvalidLoginTest(string username,string password,string expectedError)
         {
-            driver.FindElement(By.Name("username")).SendKeys("john");
-            driver.FindElement(By.Name("password")).SendKeys("admin123");
+            driver.FindElement(By.Name("username")).SendKeys(username);
+            driver.FindElement(By.Name("password")).SendKeys(password);
             driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
 
             string actualValue = driver.FindElement(By.XPath("//p[contains(normalize-space(),'Invalid')]")).Text;
-            Assert.That(actualValue.Contains("Invalid credential"), "Assertion on Invalid credentials");
+            Assert.That(actualValue.Contains(expectedError), "Assertion on Invalid credentials");
         }
     }
 }
