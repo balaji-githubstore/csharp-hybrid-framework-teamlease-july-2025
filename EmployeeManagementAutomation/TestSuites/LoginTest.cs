@@ -28,7 +28,7 @@ namespace EmployeeManagementAutomation.TestSuites
 
         //[TestCase("saul", "saul123", "Invalid credential")]
         //[TestCase("kim", "kim123", "Invalid credential")]
-        [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.InvalidLoginTestData))]
+        [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.InvalidLoginTestDataFromExcel))]
         public void InvalidLoginTest(string username,string password,string expectedError)
         {
             driver.FindElement(By.Name("username")).SendKeys(username);

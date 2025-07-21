@@ -31,6 +31,13 @@ namespace EmployeeManagementAutomation.Utilities
             return main;
         }
 
+        public static object[] InvalidLoginTestDataFromExcel()
+        {
+            object[] main = ExcelSource.GetSheetIntoObjectArray(@"D:\Balaji\Company\TeamL July 2025\AutomationFrameworkSolution\EmployeeManagementAutomation\TestData\orange-test-data.xlsx"
+                        , "InvalidLoginTest");
+
+            return main;
+        }
 
 
     }
