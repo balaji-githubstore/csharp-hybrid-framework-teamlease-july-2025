@@ -1,7 +1,9 @@
 ﻿using EmployeeManagementAutomation.Base;
+using EmployeeManagementAutomation.Pages;
 using EmployeeManagementAutomation.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +17,10 @@ namespace EmployeeManagementAutomation.TestSuites
         [Test]
         public void ValidLoginTest()
         {
-            driver.FindElement(By.Name("username")).SendKeys("Admin");
-            driver.FindElement(By.Name("password")).SendKeys("admin123");
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUsername("Admin");
+            loginPage.EnterPassword("admin123");
+
             driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
 
             string actualValue= driver.FindElement(By.XPath("//p[contains(normalize-space(),'Work')]")).Text;
@@ -31,10 +35,11 @@ namespace EmployeeManagementAutomation.TestSuites
         [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.InvalidLoginTestDataFromExcel))]
         public void InvalidLoginTest(string username,string password,string expectedError)
         {
-            driver.FindElement(By.Name("username")).SendKeys(username);
-            driver.FindElement(By.Name("password")).SendKeys(password);
-            driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUsername(username);
+            loginPage.EnterPassword(password);
 
+            driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
             string actualValue = driver.FindElement(By.XPath("//p[contains(normalize-space(),'Invalid')]")).Text;
             Assert.That(actualValue.Contains(expectedError), "Assertion on Invalid credentials");
         }
