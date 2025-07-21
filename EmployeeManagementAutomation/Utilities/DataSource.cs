@@ -39,6 +39,13 @@ namespace EmployeeManagementAutomation.Utilities
             return main;
         }
 
+        public static object[] EmployeeTestDataFromExcel()
+        {
+            object[] main = ExcelSource.GetSheetIntoObjectArray(@"D:\Balaji\Company\TeamL July 2025\AutomationFrameworkSolution\EmployeeManagementAutomation\TestData\orange-test-data.xlsx"
+                        , "AddValidEmployeeTest");
+            return main;
+        }
+
 
     }
 }

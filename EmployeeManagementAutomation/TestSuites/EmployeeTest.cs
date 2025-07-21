@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementAutomation.Base;
+using EmployeeManagementAutomation.Utilities;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace EmployeeManagementAutomation.TestSuites
     /// </summary>
     public class EmployeeTest : AutomationWrapper
     {
-        //[Test]
+        [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.EmployeeTestDataFromExcel))]
         public void AddValidEmployeeTest(string username,string password,string firstName,string middleName,string lastName)
         {
             driver.FindElement(By.Name("username")).SendKeys("Admin");
