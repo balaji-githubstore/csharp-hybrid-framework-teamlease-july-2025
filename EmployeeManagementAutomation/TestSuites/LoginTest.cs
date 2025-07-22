@@ -20,15 +20,12 @@ namespace EmployeeManagementAutomation.TestSuites
             LoginPage loginPage = new LoginPage(driver);
             loginPage.EnterUsername("Admin");
             loginPage.EnterPassword("admin123");
+            loginPage.ClickOnLogin();
 
-            driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
-
-            string actualValue= driver.FindElement(By.XPath("//p[contains(normalize-space(),'Work')]")).Text;
+            DashboardPage dashboardPage =new DashboardPage(driver);
+            string actualValue = dashboardPage.GetTimeAtWorkHeader();
             Assert.That(actualValue, Is.EqualTo("Time at Work"));
         }
-
-      
-
 
         //[TestCase("saul", "saul123", "Invalid credential")]
         //[TestCase("kim", "kim123", "Invalid credential")]
@@ -38,9 +35,9 @@ namespace EmployeeManagementAutomation.TestSuites
             LoginPage loginPage = new LoginPage(driver);
             loginPage.EnterUsername(username);
             loginPage.EnterPassword(password);
+            loginPage.ClickOnLogin();
 
-            driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
-            string actualValue = driver.FindElement(By.XPath("//p[contains(normalize-space(),'Invalid')]")).Text;
+            string actualValue = loginPage.GetInvalidErrorMessage();
             Assert.That(actualValue.Contains(expectedError), "Assertion on Invalid credentials");
         }
     }

@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementAutomation.Base;
+using EmployeeManagementAutomation.Pages;
 using EmployeeManagementAutomation.Utilities;
 using OpenQA.Selenium;
 using System;
@@ -17,9 +18,8 @@ namespace EmployeeManagementAutomation.TestSuites
         [Test,TestCaseSource(typeof(DataSource), nameof(DataSource.EmployeeTestDataFromExcel))]
         public void AddValidEmployeeTest(string username,string password,string firstName,string middleName,string lastName)
         {
-            driver.FindElement(By.Name("username")).SendKeys("Admin");
-            driver.FindElement(By.Name("password")).SendKeys("admin123");
-            driver.FindElement(By.XPath("//button[normalize-space()='Login']")).Click();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.LoginToDashboard(username, password);
 
             driver.FindElement(By.XPath("//span[text()='PIM']")).Click();
             driver.FindElement(By.LinkText("Add Employee")).Click();

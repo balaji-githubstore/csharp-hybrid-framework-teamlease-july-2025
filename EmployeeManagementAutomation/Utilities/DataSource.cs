@@ -9,7 +9,7 @@ namespace EmployeeManagementAutomation.Utilities
     /// <summary>
     /// This class contains all [TestCaseSource] method 
     /// </summary>
-    public class DataSource
+    public class DataSource 
     {
         public static object[] InvalidLoginTestData()
         {
