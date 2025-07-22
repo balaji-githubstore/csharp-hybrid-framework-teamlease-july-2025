@@ -21,15 +21,22 @@ namespace EmployeeManagementAutomation.TestSuites
             LoginPage loginPage = new LoginPage(driver);
             loginPage.LoginToDashboard(username, password);
 
+            //MainPage
             driver.FindElement(By.XPath("//span[text()='PIM']")).Click();
+
+            //PIMPage
             driver.FindElement(By.LinkText("Add Employee")).Click();
+
+            //AddEmployeePage
             driver.FindElement(By.Name("firstName")).SendKeys("john");
             driver.FindElement(By.Name("middleName")).SendKeys("w");
             driver.FindElement(By.Name("lastName")).SendKeys("jack");
             driver.FindElement(By.XPath("//button[normalize-space()='Save']")).Click();
 
+            //PersonalDetailsPage
+
             //Assert the profile name - john wick
-            string actualProfileName= driver.FindElement(By.XPath("//h6[contains(normalize-space(),'jack')]")).Text;
+            string actualProfileName = driver.FindElement(By.XPath("//h6[contains(normalize-space(),'jack')]")).Text;
             //Assert the firstname textbox contains - john
             string actualFirstName=driver.FindElement(By.Name("firstName")).GetAttribute("value");
 
