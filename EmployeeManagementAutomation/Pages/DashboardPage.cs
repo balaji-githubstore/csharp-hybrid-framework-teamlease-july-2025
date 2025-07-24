@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using EmployeeManagementAutomation.Base;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementAutomation.Pages
 {
-    public class DashboardPage
+    public class DashboardPage : WebDriverKeywords
     {
         private By timeAtWorkLocator = By.XPath("//p[contains(normalize-space(),'Work')]");
         private IWebDriver _driver;
 
-        public DashboardPage(IWebDriver driver)
+        public DashboardPage(IWebDriver driver) : base(driver)
         {
             this._driver = driver;
         }
